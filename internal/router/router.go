@@ -14,10 +14,10 @@ func Router() (*mux.Router, error) {
 	router.Use(CorsHandler)
 
 	postRouter := router.Methods(http.MethodPost).Subrouter()
-	getRouter := router.Methods(http.MethodGet).Subrouter()
+	getRouter := router.Methods(http.MethodGet).Subrouter().StrictSlash(true)
 
-	postRouter.HandleFunc("/", nil)
-	getRouter.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	postRouter.HandleFunc("/api/patient_profile", nil)
+	getRouter.HandleFunc("/api/patient_profile", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "teleHealth")
 	})
 
