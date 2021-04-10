@@ -10,6 +10,7 @@ import (
 
 //SetupModels set up database connect
 func SetupModels() *gorm.DB {
+
 	//Enable Viper to read environmental varibles
 	viperUser := viper.Get("POSTGRES_USER")
 	viperPassword := viper.Get("POSTGRES_PASSWORD")
@@ -17,6 +18,7 @@ func SetupModels() *gorm.DB {
 	viperHost := viper.Get("POSTGRES_HOST")
 	viperPort := viper.Get("POSTGRES_PORT")
 
+	//setting up connection string
 	postgresConnName := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable",
 		viperHost,
 		viperPort,
@@ -29,8 +31,6 @@ func SetupModels() *gorm.DB {
 	if err != nil {
 		panic("Failed to connect to database")
 	}
-
-	//setting up connection string
 
 	return db
 }

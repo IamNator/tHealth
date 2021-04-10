@@ -2,25 +2,16 @@ package models
 
 import (
 	"time"
-
-	"gorm.io/gorm"
 )
 
-//User defines a model for user information
-type User struct {
-	ID    int `json:"id"`
-	Price int
-	Code  string
-}
-
-//patientProfile is a model for patient_profile_table
-type patientProfile struct {
-	ID              string    `json:"id"`
+//PatientProfile is a model for patient_profile_table
+type PatientProfile struct {
+	ID              string    `json:"id" gorm:"primary_key"`
 	FullName        string    `json:"fullname"`
 	Gender          string    `json:"gender"`
 	Contact         string    `json:"contact"`
 	ReligionCulture string    `json:"religion_culture"`
-	Telephone  	     string    `json:"telephone"`
+	Telephone       string    `json:"telephone"`
 	Languages       []string  `json:"languages"`
 	Assessment      string    `json:"assessment"`
 	History         []string  `json:"history"`
@@ -31,11 +22,11 @@ type patientProfile struct {
 }
 
 //NewPatientProfile creates a new patientProfile
-func NewPatientProfile()
+// func NewPatientProfile()
 
-func (p *patientProfile) Add(db *gorm.DB) {
-	db.Model(&patientProfile{}).Create(p)
-}
+// func (p *patientProfile) Add(db *gorm.DB) {
+// 	db.Model(&patientProfile{}).Create(p)
+// }
 
 /*	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
