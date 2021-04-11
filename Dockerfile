@@ -1,7 +1,7 @@
 # Start from golang base image
 FROM golang:alpine as builder
 
-# ENV GO111MODULE=on
+ENV GO111MODULE=on
 
 # Add Maintainer info
 LABEL maintainer="Nator Verinumbe <natverior1@gmail.com>"
@@ -27,6 +27,12 @@ RUN go mod download
 
 # RUN go mod download 
 
+ENV   POSTGRES_DB=thealth
+ENV    POSTGRES_USER=postgres
+ENV   POSTGRES_PASSWORD=1234
+    #POSTGRES_HOST=db
+ENV   POSTGRES_HOST=localhost
+ENV   POSTGRES_PORT=5432
 
 # Build the Go app
 # RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
