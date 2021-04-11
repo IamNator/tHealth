@@ -27,12 +27,12 @@ RUN go mod download
 
 # RUN go mod download 
 
-ENV   POSTGRES_DB=thealth
-ENV    POSTGRES_USER=postgres
-ENV   POSTGRES_PASSWORD=1234
-    #POSTGRES_HOST=db
-ENV   POSTGRES_HOST=localhost
-ENV   POSTGRES_PORT=5432
+# ENV   POSTGRES_DB=thealth
+# ENV    POSTGRES_USER=postgres
+# ENV   POSTGRES_PASSWORD=1234
+#     #POSTGRES_HOST=db
+# ENV   POSTGRES_HOST=localhost
+# ENV   POSTGRES_PORT=5432
 
 # Build the Go app
 # RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
@@ -44,5 +44,5 @@ RUN go get github.com/githubnemo/CompileDaemon
 ENTRYPOINT CompileDaemon --build="go build main.go" --command=./main
 # ENTRYPOINT CompileDaemon --build="go mod download && go run ." --command=./main
 
-EXPOSE 3000
-EXPOSE 5431
+# EXPOSE 3000
+# EXPOSE 5432
