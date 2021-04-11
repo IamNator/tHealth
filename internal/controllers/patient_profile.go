@@ -14,7 +14,7 @@ import (
 func FindPatients(c *gin.Context) {
 	db := c.MustGet("db").(*gorm.DB)
 
-	var patients []models.PatientProfile
+	var patients []models.PatientProfiles
 	db.Find(&patients)
 
 	c.JSON(http.StatusOK, gin.H{"data": patients})
@@ -33,17 +33,17 @@ func CreatePatient(c *gin.Context) {
 	}
 
 	//Create Book
-	patient := models.PatientProfile{
+	patient := models.PatientProfiles{
 		FullName:        input.FullName,
 		Gender:          input.Gender,
 		Contact:         input.Contact,
 		ReligionCulture: input.ReligionCulture,
 		Telephone:       input.Telephone,
-		Languages:       input.Languages,
-		Assessment:      input.Assessment,
-		History:         input.History,
-		Objective:       input.Objective,
-		AttachedFiles:   input.AttachedFiles,
+		// Languages:       input.Languages,
+		// Assessment:      input.Assessment,
+		// History:         input.History,
+		// Objective:       input.Objective,
+		// AttachedFiles:   input.AttachedFiles,
 		ResponseTime:    input.ResponseTime,
 		TimeofCompalint: input.TimeofCompalint,
 	}
@@ -59,7 +59,7 @@ func CreatePatient(c *gin.Context) {
 func FindPatient(c *gin.Context) {
 
 	db := c.MustGet("db").(*gorm.DB)
-	var patientProfile models.PatientProfile
+	var patientProfile models.PatientProfiles
 	if err := db.Where("id = ?", c.Param("id")).First(&patientProfile).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found"})
 		return
@@ -75,7 +75,7 @@ func UpdatePatient(c *gin.Context) {
 	db := c.MustGet("db").(*gorm.DB)
 
 	//Get model if exists
-	var patientProfile models.PatientProfile
+	var patientProfile models.PatientProfiles
 	if err := db.Where("id = ?", c.Param("id")).First(&patientProfile).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "record not found!"})
 		return
@@ -101,7 +101,7 @@ func DeletePatient(c *gin.Context) {
 	db := c.MustGet("db").(*gorm.DB)
 
 	//Get patient if exist
-	var patient models.PatientProfile
+	var patient models.PatientProfiles
 	if err := db.Where("id = ? ", c.Param("id")).First(&patient).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "record not found!"})
 		return
