@@ -19,7 +19,7 @@ services:
     #     volumes:
     #         - database_data:/var/lib/postgresql/data
 
-    web: 
+    web:
         container_name: thealth
         build: ./
         ports: 

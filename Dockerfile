@@ -11,28 +11,17 @@ LABEL maintainer="Nator Verinumbe <natverior1@gmail.com>"
 RUN apk update && apk add --no-cache git
 RUN go version
 
-# Set the current working directory inside the container 
-
 # creates working directory for program
 WORKDIR /go/src/github.com/IamNator/thealth
 
 # copies all program files specified directory in the container
 ADD . /go/src/github.com/IamNator/thealth
 
-#changes to the specified directory
-# WORKDIR /go/src/github.com/gradelyng/gradely-sms
 
 #downloads the required depencies using the go.mod file
 RUN go mod download 
 
-# RUN go mod download 
 
-# ENV   POSTGRES_DB=thealth
-# ENV    POSTGRES_USER=postgres
-# ENV   POSTGRES_PASSWORD=1234
-#     #POSTGRES_HOST=db
-# ENV   POSTGRES_HOST=localhost
-# ENV   POSTGRES_PORT=5432
 
 # Build the Go app
 # RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
@@ -44,5 +33,5 @@ RUN go get github.com/githubnemo/CompileDaemon
 ENTRYPOINT CompileDaemon --build="go build main.go" --command=./main
 # ENTRYPOINT CompileDaemon --build="go mod download && go run ." --command=./main
 
-# EXPOSE 3000
-# EXPOSE 5432
+EXPOSE 3000
+EXPOSE 5432
