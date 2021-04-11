@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
+	"github.com/spf13/viper"
 	//	_ "github.com/jinzhu/gorm/dialects/postgres" // using postgres sql
 	"github.com/lib/pq"
 	_ "github.com/lib/pq" //using pq
@@ -14,11 +15,11 @@ import (
 func SetupModels() *gorm.DB {
 
 	//Enable Viper to read environmental varibles
-	viperUser := "postgres"  // viper.Get("POSTGRES_USER")
-	viperPassword := "1234"  // viper.Get("POSTGRES_PASSWORD")
-	viperDB := "thealth"     //viper.Get("POSTGRES_DB")
-	viperHost := "localhost" //viper.Get("POSTGRES_HOST")
-	viperPort := "5432"      //viper.Get("POSTGRES_PORT")
+	viperUser := viper.Get("POSTGRES_USER")
+	viperPassword := viper.Get("POSTGRES_PASSWORD")
+	viperDB := viper.Get("POSTGRES_DB")
+	viperHost := viper.Get("POSTGRES_HOST")
+	viperPort := viper.Get("POSTGRES_PORT")
 
 	//setting up connection string
 	postgresCon := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable",
