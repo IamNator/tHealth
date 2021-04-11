@@ -36,14 +36,13 @@ func SetupModels() *gorm.DB {
 	fmt.Println(postgresCon)
 	db, err := gorm.Open("postgres", postgresCon)
 	if err != nil {
-		panic("Failed to connect to database :" + err.Error())
+		panic("failed to connect to database :" + err.Error())
 	}
 
 	db.AutoMigrate(&PatientProfiles{})
 
 	//Initialize with values
 	m := PatientProfiles{
-		//	ID:              1,
 		FullName:        "Tese",
 		Gender:          "Verinumbe",
 		Contact:         "090569844",
