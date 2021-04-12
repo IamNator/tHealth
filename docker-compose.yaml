@@ -21,10 +21,9 @@ services:
             - 3000
         ports: 
             - 3000:3000
-        environment:
-            PORT: 3000
         env_file:
             - database.env #configure postgres
+            - .env
         volumes:
                 - ./:/go/src/github.com/IamNator/thealth:rw
         depends_on:
