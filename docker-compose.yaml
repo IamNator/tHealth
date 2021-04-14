@@ -17,7 +17,7 @@ services:
     web:
         depends_on:
             - db
-        container_name: thealth
+        container_name: thealth-backend
         build: ./
         expose:
             - 3000
@@ -38,7 +38,7 @@ services:
         expose: 
             - 80
         volumes: 
-            - ./frontend/thealth/dist:/usr/share/ngnix/html
+            - ./frontend/thealth/dist:/usr/share/nginx/html:rw
 
 # Networks to be created to facilitate communication between containers
 networks:
