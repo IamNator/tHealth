@@ -18,11 +18,11 @@ func PatientRouter(r *gin.Engine) *gin.Engine {
 	})
 
 	r.GET("/patients", controllers.FindPatients)
-	r.POST("/patients", controllers.CreatePatient) //create
-	r.GET("/patients:id", controllers.FindPatient) //find by id
+	r.POST("/patients", controllers.CreatePatient)  //create
+	r.GET("/patients/:id", controllers.FindPatient) //find by id
 
-	r.PATCH("/patients:id", controllers.UpdatePatient) //update by id
-	r.DELETE("patients:id", controllers.DeletePatient) //delete by id
+	r.PATCH("/patients/:id", controllers.UpdatePatient) //update by id
+	r.DELETE("patients/:id", controllers.DeletePatient) //delete by id
 
 	return r
 }

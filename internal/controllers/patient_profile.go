@@ -89,9 +89,9 @@ func UpdatePatient(c *gin.Context) {
 	}
 
 	//update records
-	db.Model(&input).Update(input)
+	db.Model(&patientProfile).Update(input)
 
-	c.JSON(http.StatusOK, gin.H{"data": input})
+	c.JSON(http.StatusOK, gin.H{"data": patientProfile})
 }
 
 //DeletePatient deletes a patient
