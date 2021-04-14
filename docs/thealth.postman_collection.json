@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "fb106b5e-c475-4f3b-8153-86f5f9281516",
+		"name": "thealth",
+		"description": "THEALTH is a health care app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Patients profile",
+			"item": [
+				{
+					"name": "Get all patient profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/patients",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"patients"
+							]
+						},
+						"description": "Retrieves all patients profile\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Updates a patients profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n       \n            \"objective\": [\n                \"Excellence\",\n                \"Brilliance\"\n            ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/patients/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"patients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a patient's record",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "Deletes a patient's record"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a patients profile by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/patients/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consult Physician",
+			"item": [
+				{
+					"name": "Get all physicians profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a physicians profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/physicians/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"physicians",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
