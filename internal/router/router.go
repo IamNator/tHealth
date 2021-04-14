@@ -46,12 +46,12 @@ func (r *router) PhysicianRouter() {
 //related to consult physicians profile
 func (r *router) LocalFacilityRouter() {
 
-	r.Engine.GET("/physicians", controllers.FindLocalFacilities)
-	r.Engine.POST("/physicians", controllers.CreateLocalFacility)  //create
-	r.Engine.GET("/physicians/:id", controllers.FindLocalFacility) //find by id
+	r.Engine.GET("/local_facilities", controllers.FindLocalFacilities)
+	r.Engine.POST("/local_facilities", controllers.CreateLocalFacility)  //create
+	r.Engine.GET("/local_facilities/:id", controllers.FindLocalFacility) //find by id
 
-	r.Engine.PATCH("/physicians/:id", controllers.UpdateLocalFacility) //update by id
-	r.Engine.DELETE("physicians/:id", controllers.DeleteLocalFacility) //delete by id
+	r.Engine.PATCH("/local_facilities/:id", controllers.UpdateLocalFacility) //update by id
+	r.Engine.DELETE("/local_facilities/:id", controllers.DeleteLocalFacility) //delete by id
 
 }
 
