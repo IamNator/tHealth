@@ -80,3 +80,7 @@ func (r *router) AttachDB() {
 func (r *router) CloseDB() {
 	r.DB.Close()
 }
+
+func (r *router) Cors() {
+	r.Engine.Use(CorsHandler)
+}

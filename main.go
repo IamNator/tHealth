@@ -9,19 +9,21 @@ import (
 
 func main() {
 
-	defaultRouter := gin.Default()
-	DB := models.SetupModels()
+	defaultRouter := gin.Default() //default gin router
+	DB := models.SetupModels()     //open up databse connection and run migration db does not exist
 
 	r := router.New(defaultRouter, DB)
-	r.AttachDB()
-	defer r.CloseDB()
+	r.AttachDB()      //Attach database connection
+	defer r.CloseDB() //Close DB connection on apps termination
+
+	r.Cors() //Apply cors
 
 	r.PatientRouter()
 	r.PhysicianRouter()
 	r.LocalFacilityRouter()
 	r.LocalProviderRouter()
 
-	port := ":" + viper.GetString("PORT")
-	r.Engine.Run(port)
+	port := ":" + viper.GetString("PORT") //Get PORT addr from environ
+	r.Engine.Run(port)                    //Listen and serve on PORT
 
 }
