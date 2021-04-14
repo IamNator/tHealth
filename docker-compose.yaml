@@ -34,7 +34,7 @@ services:
         depends_on: 
             - web
         container_name: thealth-frontend
-        build: ./
+        build: ./frontend/.
         expose: 
             - 80
         volumes: 
