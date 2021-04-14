@@ -10,7 +10,7 @@ import (
 func main() {
 
 	defaultRouter := gin.Default() //default gin router
-	DB := models.SetupModels()     //open up databse connection and run migration db does not exist
+	DB := models.SetupModels()     //open up databse connection and run migration if db does not exist
 
 	r := router.New(defaultRouter, DB)
 	r.AttachDB()      //Attach database connection
@@ -18,6 +18,7 @@ func main() {
 
 	r.Cors() //Apply cors
 
+	//Attach routes
 	r.PatientRouter()
 	r.PhysicianRouter()
 	r.LocalFacilityRouter()
