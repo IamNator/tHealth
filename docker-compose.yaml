@@ -28,7 +28,7 @@ services:
         volumes:
                 - ./:/go/src/github.com/IamNator/thealth:rw
         depends_on:
-                - db
+                - "db"
 
 # Networks to be created to facilitate communication between containers
 networks:
