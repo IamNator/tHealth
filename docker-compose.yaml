@@ -31,14 +31,17 @@ services:
                 - ./:/go/src/github.com/IamNator/thealth:rw
     
     frontend:
-        depends_on: 
-            - web
+        # depends_on: 
+        #     - web
         container_name: thealth-frontend
         build: ./frontend/.
-        expose: 
-            - 80
+        # expose: 
+        #     - 80
+        ports: 
+            - 4000:80
         volumes: 
-            - ./frontend/thealth/dist:/usr/share/nginx/html:rw
+            - ./frontend/thealth/dist:/usr/share/nginx/html/dist:rw
+            - ./frontend/thealth/index.html:/usr/share/nginx/html/index.html:rw
 
 # Networks to be created to facilitate communication between containers
 networks:
