@@ -40,6 +40,8 @@ func SetupModels() *gorm.DB {
 
 	db.AutoMigrate(&PatientProfiles{})
 	db.AutoMigrate(&ConsultPhys{})
+	db.AutoMigrate(&LocalFacility{})
+	db.AutoMigrate(&LocalProvider{})
 
 	return db
 }

@@ -2,36 +2,28 @@ package router
 
 import (
 	"github.com/IamNator/thealth/internal/controllers"
-	"github.com/IamNator/thealth/internal/models"
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 )
 
 type router struct {
-	*gin.Engine
+	Engine *gin.Engine
+	DB     *gorm.DB
 }
 
-func New(e *gin.Engine) router {
-	return router{e}
+func New(e *gin.Engine, db *gorm.DB) router {
+	return router{e, db}
 }
 
 //PatientRouter routes the different requests
 //related to patients profile
 func (r *router) PatientRouter() {
+	r.Engine.GET("/patients", controllers.FindPatients)
+	r.Engine.POST("/patients", controllers.CreatePatient)  //create
+	r.Engine.GET("/patients/:id", controllers.FindPatient) //find by id
 
-	db := models.SetupModels()
-
-	// Provides db variable to controller
-	r.Use(func(c *gin.Context) {
-		c.Set("db", db)
-		c.Next()
-	})
-
-	r.GET("/patients", controllers.FindPatients)
-	r.POST("/patients", controllers.CreatePatient)  //create
-	r.GET("/patients/:id", controllers.FindPatient) //find by id
-
-	r.PATCH("/patients/:id", controllers.UpdatePatient) //update by id
-	r.DELETE("patients/:id", controllers.DeletePatient) //delete by id
+	r.Engine.PATCH("/patients/:id", controllers.UpdatePatient) //update by id
+	r.Engine.DELETE("patients/:id", controllers.DeletePatient) //delete by id
 
 }
 
@@ -39,19 +31,41 @@ func (r *router) PatientRouter() {
 //related to consult physicians profile
 func (r *router) PhysicianRouter() {
 
-	db := models.SetupModels()
+	r.Engine.GET("/physicians", controllers.FindConsultPhyss)
+	r.Engine.POST("/physicians", controllers.CreateConsultPhys)  //create
+	r.Engine.GET("/physicians/:id", controllers.FindConsultPhys) //find by id
+
+	r.Engine.PATCH("/physicians/:id", controllers.UpdateConsultPhys) //update by id
+	r.Engine.DELETE("physicians/:id", controllers.DeleteConsultPhys) //delete by id
+
+}
+
+
+
+//PhysicianRouter routes the different requests
+//related to consult physicians profile
+func (r *router) LocalFacilityRouter() {
+
+	r.Engine.GET("/physicians", controllers.FindLocalFacilities)
+	r.Engine.POST("/physicians", controllers.CreateLocalFacility)  //create
+	r.Engine.GET("/physicians/:id", controllers.FindLocalFacility) //find by id
+
+	r.Engine.PATCH("/physicians/:id", controllers.UpdateLocalFacility) //update by id
+	r.Engine.DELETE("physicians/:id", controllers.DeleteLocalFacility) //delete by id
+
+}
+
+func (r *router) AttachDB() {
+	// db := models.SetupModels()
 
 	// Provides db variable to controller
-	r.Use(func(c *gin.Context) {
-		c.Set("db", db)
+	r.Engine.Use(func(c *gin.Context) {
+		c.Set("db", r.DB)
 		c.Next()
 	})
 
-	r.GET("/physicians", controllers.FindConsultPhyss)
-	r.POST("/physicians", controllers.CreateConsultPhys)  //create
-	r.GET("/physicians/:id", controllers.FindConsultPhys) //find by id
+}
 
-	r.PATCH("/physicians/:id", controllers.UpdateConsultPhys) //update by id
-	r.DELETE("physicians/:id", controllers.DeleteConsultPhys) //delete by id
-
+func (r *router) CloseDB() {
+	r.DB.Close()
 }
