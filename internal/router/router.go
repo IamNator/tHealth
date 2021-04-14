@@ -40,8 +40,6 @@ func (r *router) PhysicianRouter() {
 
 }
 
-
-
 //PhysicianRouter routes the different requests
 //related to consult physicians profile
 func (r *router) LocalFacilityRouter() {
@@ -50,8 +48,21 @@ func (r *router) LocalFacilityRouter() {
 	r.Engine.POST("/local_facilities", controllers.CreateLocalFacility)  //create
 	r.Engine.GET("/local_facilities/:id", controllers.FindLocalFacility) //find by id
 
-	r.Engine.PATCH("/local_facilities/:id", controllers.UpdateLocalFacility) //update by id
+	r.Engine.PATCH("/local_facilities/:id", controllers.UpdateLocalFacility)  //update by id
 	r.Engine.DELETE("/local_facilities/:id", controllers.DeleteLocalFacility) //delete by id
+
+}
+
+//LocalProviderRouter routes the different requests
+//related to Local Providers profile
+func (r *router) LocalProviderRouter() {
+
+	r.Engine.GET("/local_providers", controllers.FindLocalProviders)
+	r.Engine.POST("/local_providers", controllers.CreateLocalProvider)  //create
+	r.Engine.GET("/local_providers/:id", controllers.FindLocalProvider) //find by id
+
+	r.Engine.PATCH("/local_providers/:id", controllers.UpdateLocalProvider)  //update by id
+	r.Engine.DELETE("/local_providers/:id", controllers.DeleteLocalProvider) //delete by id
 
 }
 

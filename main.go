@@ -19,6 +19,7 @@ func main() {
 	r.PatientRouter()
 	r.PhysicianRouter()
 	r.LocalFacilityRouter()
+	r.LocalProviderRouter()
 
 	port := ":" + viper.GetString("PORT")
 	r.Engine.Run(port)
