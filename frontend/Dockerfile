@@ -10,6 +10,6 @@ RUN npm run build
 
 # production stage
 FROM ngnix:stable-alphine as production-stage
-COPY --from=build-stage /app/dist /usr/share/ngnix/html
+COPY --from=build-stage /thealth/dist /usr/share/ngnix/html
 EXPOSE 80
 CMD ["ngnix","-g", "daemon off;"]
