@@ -32,7 +32,7 @@ func CreatePatient(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	//Create Book
+	//Create patients profile
 	patient := models.PatientProfiles{
 		FullName:        input.FullName,
 		Gender:          input.Gender,

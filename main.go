@@ -7,8 +7,13 @@ import (
 )
 
 func main() {
+
 	rDefault := gin.Default()
-	r := router.PatientRouter(rDefault)
+	
+	r := router.New(rDefault)
+	r.PatientRouter()
+	r.PhysicianRouter()
+
 	port := ":" + viper.GetString("PORT")
 	r.Run(port)
 }

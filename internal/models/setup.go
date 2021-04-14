@@ -2,13 +2,12 @@ package models
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
 
 	//	_ "github.com/jinzhu/gorm/dialects/postgres" // using postgres sql
-	"github.com/lib/pq"
+
 	_ "github.com/lib/pq" //using pq
 )
 
@@ -40,23 +39,24 @@ func SetupModels() *gorm.DB {
 	}
 
 	db.AutoMigrate(&PatientProfiles{})
-
-	//Initialize with values
-	m := PatientProfiles{
-		FullName:        "Tese",
-		Gender:          "Verinumbe",
-		Contact:         "090569844",
-		ReligionCulture: "Christain",
-		Telephone:       "0804484034",
-		Languages:       pq.StringArray{"English", "French", "German", "Mandarin"},
-		Assessment:      "Excellent",
-		History:         pq.StringArray{"none"},
-		Objective:       pq.StringArray{"Excellence"},
-		AttachedFiles:   nil,
-		ResponseTime:    time.Now(),
-	}
-
-	db.Create(&m)
+	db.AutoMigrate(&ConsultPhys{})
 
 	return db
 }
+
+// //Initialize with values
+// m := PatientProfiles{
+// 	FullName:        "Tese",
+// 	Gender:          "Verinumbe",
+// 	Contact:         "090569844",
+// 	ReligionCulture: "Christain",
+// 	Telephone:       "0804484034",
+// 	Languages:       pq.StringArray{"English", "French", "German", "Mandarin"},
+// 	Assessment:      "Excellent",
+// 	History:         pq.StringArray{"none"},
+// 	Objective:       pq.StringArray{"Excellence"},
+// 	AttachedFiles:   nil,
+// 	ResponseTime:    time.Now(),
+// }
+
+// db.Create(&m)

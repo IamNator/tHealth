@@ -6,8 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type router struct {
+	*gin.Engine
+}
+
+func New(e *gin.Engine) router {
+	return router{e}
+}
+
 //PatientRouter routes the different requests
-func PatientRouter(r *gin.Engine) *gin.Engine {
+//related to patients profile
+func (r *router) PatientRouter() {
 
 	db := models.SetupModels()
 
@@ -24,5 +33,25 @@ func PatientRouter(r *gin.Engine) *gin.Engine {
 	r.PATCH("/patients/:id", controllers.UpdatePatient) //update by id
 	r.DELETE("patients/:id", controllers.DeletePatient) //delete by id
 
-	return r
+}
+
+//PhysicianRouter routes the different requests
+//related to consult physicians profile
+func (r *router) PhysicianRouter() {
+
+	db := models.SetupModels()
+
+	// Provides db variable to controller
+	r.Use(func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	})
+
+	r.GET("/physicians", controllers.FindConsultPhyss)
+	r.POST("/physicians", controllers.CreateConsultPhys)  //create
+	r.GET("/physicians/:id", controllers.FindConsultPhys) //find by id
+
+	r.PATCH("/physicians/:id", controllers.UpdateConsultPhys) //update by id
+	r.DELETE("physicians/:id", controllers.DeleteConsultPhys) //delete by id
+
 }
