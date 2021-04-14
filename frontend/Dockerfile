@@ -10,6 +10,6 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /thealth/dist /usr/share/ngnix/html
+COPY --from=build-stage /thealth/dist /usr/share/nginx/html
 EXPOSE 80
-CMD ["ngnix","-g", "daemon off;"]
+CMD ["nginx","-g", "daemon off;"]
