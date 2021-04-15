@@ -41,7 +41,7 @@ services:
             - 4000:80
         volumes: 
             - ./frontend/thealth/dist:/usr/share/nginx/html/dist:rw
-            - ./frontend/thealth/index.html:/usr/share/nginx/html/index.html:rw
+            
 
 # Networks to be created to facilitate communication between containers
 networks:
