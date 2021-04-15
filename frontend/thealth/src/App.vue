@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Welcome msg="Welcome to thealth App"/>
+    <!-- <Welcome msg="Welcome"/> -->
+   <Table />
   </div>
 </template>
 
 <script>
-import Welcome from './components/Welcome.vue'
+// import Welcome from './components/Welcome';
+import Table from './components/table.vue';
 
 export default {
   name: 'App',
   components: {
-    Welcome
+    // Welcome,
+    Table
   }
 }
 </script>
