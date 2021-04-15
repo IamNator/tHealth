@@ -16,7 +16,7 @@ COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 ## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=build-stage /thealth/dist /usr/share/nginx/html/dist
+COPY --from=build-stage /thealth/dist /usr/share/nginx/html
 
 
 EXPOSE 80
