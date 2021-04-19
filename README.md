@@ -11,3 +11,10 @@ The application is deployed using Docker.
 #TODO
 * Setup CI/CD to AWS server
 
+
+#Tech used:   
+* gin
+* postgres
+* Docker
+
+
